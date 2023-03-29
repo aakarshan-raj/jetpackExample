@@ -1,2 +1,2 @@
-#Simple App that uses jetPack.
-##gets input and shows it in List
+# Simple App that uses jetPack.
+## git gets input and shows it in List
