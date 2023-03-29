@@ -4,11 +4,12 @@ import android.os.Bundle
 import android.widget.EditText
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
+import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.material.*
-import androidx.compose.runtime.Composable
-import androidx.compose.runtime.mutableStateOf
-import androidx.compose.runtime.remember
+import androidx.compose.runtime.*
 import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
@@ -33,14 +34,19 @@ class MainActivity : ComponentActivity() {
 
 @Composable
 fun write(){
-    var value = rememberSaveable{
-        mutableStateOf("Text")
-    }
 
-    Button(onClick = {}){
-         Text(text = "Click me")
+    var value by remember {
+        mutableStateOf("")
     }
-    TextField(value =value , onValueChange = false,label = { Text("Label") })
+    Column(Modifier.fillMaxSize()) {
+        Row(Modifier.fillMaxWidth()) {
+            OutlinedTextField(value = value, onValueChange = {text->value=text} )
+            Button(onClick = { /*TODO*/ }) {
+                Text(text = "Add")
+            }
+        }
+    }
+    
 }
 
 @Preview(showBackground = true)
