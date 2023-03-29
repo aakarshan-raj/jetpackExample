@@ -1,13 +1,15 @@
 package com.example.jetpackexample
 
 import android.os.Bundle
+import android.widget.EditText
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.material.MaterialTheme
-import androidx.compose.material.Surface
-import androidx.compose.material.Text
+import androidx.compose.material.*
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
+import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import com.example.jetpackexample.ui.theme.JetPackExampleTheme
@@ -22,7 +24,7 @@ class MainActivity : ComponentActivity() {
                     modifier = Modifier.fillMaxSize(),
                     color = MaterialTheme.colors.background
                 ) {
-                    Greeting("Android")
+                    write()
                 }
             }
         }
@@ -30,14 +32,21 @@ class MainActivity : ComponentActivity() {
 }
 
 @Composable
-fun Greeting(name: String) {
-    Text(text = "Hello $name!")
+fun write(){
+    var value = rememberSaveable{
+        mutableStateOf("Text")
+    }
+
+    Button(onClick = {}){
+         Text(text = "Click me")
+    }
+    TextField(value =value , onValueChange = false,label = { Text("Label") })
 }
 
 @Preview(showBackground = true)
 @Composable
 fun DefaultPreview() {
     JetPackExampleTheme {
-        Greeting("Android")
+        write()
     }
 }
